@@ -6,6 +6,7 @@ import { ControlsBar } from "@/components/ControlsBar";
 import { StarInfoPanel } from "@/components/StarInfoPanel";
 import { Constellation, StarRecord, StarSelection } from "@/lib/types";
 import { initAudio, playForStar, setVolume, stopAudio, getVolume } from "@/audio/engine";
+import { withBasePath } from "@/lib/basePath";
 
 export default function Page() {
   const [stars, setStars] = useState<StarRecord[]>([]);
@@ -30,8 +31,8 @@ export default function Page() {
     const load = async () => {
       try {
         const [starsRes, constRes] = await Promise.all([
-          fetch("/data/stars.json"),
-          fetch("/data/constellations.json")
+          fetch(withBasePath("/data/stars.json")),
+          fetch(withBasePath("/data/constellations.json"))
         ]);
         if (!starsRes.ok || !constRes.ok) throw new Error("Failed to load data");
         const starsData = (await starsRes.json()) as StarRecord[];

@@ -7,6 +7,8 @@
  * Handles SoundFont loading and MIDI-style note triggering.
  */
 
+import { withBasePath } from "@/lib/basePath";
+
 // Type declarations for js-synthesizer
 declare const JSSynth: {
   Synthesizer: new () => FluidSynthInstance;
@@ -32,7 +34,7 @@ const SOUNDFONT_CONFIG = {
   piano: {
     // Free piano SoundFont URLs (prioritized)
     urls: [
-      "/soundfonts/piano.sf2",  // Local bundled version
+      withBasePath("/soundfonts/piano.sf2"),  // Local bundled version
       "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3.sf2",
     ],
     bank: 0,

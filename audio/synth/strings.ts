@@ -7,6 +7,8 @@
  * Uses a separate channel from piano for independent control.
  */
 
+import { withBasePath } from "@/lib/basePath";
+
 // Type declarations for js-synthesizer
 declare const JSSynth: {
   Synthesizer: new () => FluidSynthInstance;
@@ -37,7 +39,7 @@ const CC_REVERB = 91;
 const SOUNDFONT_CONFIG = {
   strings: {
     urls: [
-      "/soundfonts/strings.sf2",  // Local bundled version
+      withBasePath("/soundfonts/strings.sf2"),  // Local bundled version
       "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/string_ensemble_1-mp3.sf2",
     ],
     bank: 0,
